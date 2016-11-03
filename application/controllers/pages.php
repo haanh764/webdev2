@@ -10,7 +10,15 @@ class Pages extends CI_Controller {
 		// Whoops, we don't have a page for that!
 		show_404();
 	}
-		$this->load->view('pages/'.$page);
+
+	    $page_name = strtoupper($page);
+		$data['title'] = "ICTLab | $page_name";
+
+		$this->load->view('templates/header', $data);
+        $this->load->view('templates/navigation');
+		$this->load->view('pages/'.$page, $data);
+		$this->load->view('templates/footer');
+
 	}
 }
 
